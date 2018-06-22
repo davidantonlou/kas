@@ -1,0 +1,8 @@
+version: '3'
+services:
+  kas-api:
+    image: kas-api:0.0.1-SNAPSHOT
+    ports:
+        - 8080:8080
+    build: kas-api/.
+    container_name: kas-api
