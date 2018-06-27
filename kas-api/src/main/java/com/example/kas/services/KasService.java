@@ -2,26 +2,21 @@ package com.example.kas.services;
 
 import com.example.kas.model.OpenDataResponse;
 import com.example.kas.utils.KasConstants;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.ObjectWriter;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 @Service
 public class KasService implements IKasService {
 
-    public String findAllPackages() {
+    public OpenDataResponse findAllPackages() {
         RestTemplate restTemplate = new RestTemplate();
-        OpenDataResponse openData = restTemplate.getForObject(KasConstants.SEARCH_PACKAGES_URI, OpenDataResponse.class);
+        return restTemplate.getForObject(KasConstants.SEARCH_PACKAGES_URI, OpenDataResponse.class);
+    }
 
-        ObjectWriter writer = new ObjectMapper().writer().withDefaultPrettyPrinter();
-        String response = null;
-        try {
-            response = writer.writeValueAsString(openData);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        return response;
+    @CachePut(value="packages", key="#code")
+    public OpenDataResponse findPackagesByCode(String code) {
+        RestTemplate restTemplate = new RestTemplate();
+        return restTemplate.getForObject(String.format(KasConstants.SEARCH_PACKAGES_BY_CODE_URI, code), OpenDataResponse.class);
     }
 }

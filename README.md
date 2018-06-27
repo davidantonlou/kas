@@ -6,6 +6,7 @@ Application to get Open Data Barcelona API information.
 
 `` docker-compose up ``
 
-Endpoint for get all the packages:
-``http://localhost:8080/kas/``
+## Endpoints
 
+/kas              - Get all the packages
+/kas/code/{code}  - Get packages by code
