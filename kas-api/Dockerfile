@@ -1,10 +1,7 @@
-FROM openjdk:8-jdk-slim
+FROM openjdk:8-jdk-alpine
 
 COPY build/libs/kas-api*.jar app.jar
-COPY scripts/start.sh /usr/bin
-
-RUN chmod +x /usr/bin/start.sh
 
 EXPOSE 8080
 
-ENTRYPOINT [ "/usr/bin/start.sh" ]
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/app.jar"]
