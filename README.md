@@ -2,9 +2,26 @@
 ## KAS
 Application to get Open Data Barcelona API information.
 
+
 ### Build and Run
+To build manually kas-api application:
+
+``cd kas-api``
+
+``gradle clean build``
+
+
+For run the infraestructure from command-line:
+
+``cd kas-api``
+
+``gradle bootRun``
+
+
+For run the infraestructure with Docker:
 
 `` docker-compose up ``
+
 
 ## API Endpoints
 
