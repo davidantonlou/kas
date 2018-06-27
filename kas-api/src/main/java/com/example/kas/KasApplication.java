@@ -1,5 +1,7 @@
 package com.example.kas;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.CacheManager;
@@ -14,7 +16,13 @@ import java.util.Arrays;
 @EnableCaching
 public class KasApplication {
 
+	private static final Logger LOGGER = LoggerFactory.getLogger(KasApplication.class);
+
 	public static void main(String[] args) {
+		if (LOGGER.isDebugEnabled()){
+			LOGGER.debug("Start KasApplication");
+		}
+
 		SpringApplication.run(KasApplication.class, args);
 	}
 
